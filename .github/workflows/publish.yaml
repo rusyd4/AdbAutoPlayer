@@ -146,8 +146,13 @@ jobs:
             -C link-arg=-Wl,-rpath,\$ORIGIN/../lib/$PRODUCT_NAME/lib \
             -L $(realpath ./src-tauri/pyembed/python/lib)"
 
+          # Find all directories containing .so files inside the python environment
+          # and add them to LD_LIBRARY_PATH so linuxdeploy can find internal package dependencies.
+          SO_DIRS=$(find $(realpath ./src-tauri/pyembed/python) -name "*.so*" -exec dirname {} \; | sort -u | tr '\n' ':')
+
           echo "PYO3_PYTHON=$PYO3_PYTHON" >> $GITHUB_ENV
           echo "RUSTFLAGS=$RUSTFLAGS" >> $GITHUB_ENV
+          echo "LD_LIBRARY_PATH=${SO_DIRS}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" >> $GITHUB_ENV
 
       - name: Set build environment variables (macos)
         if: runner.os == 'macOS'
