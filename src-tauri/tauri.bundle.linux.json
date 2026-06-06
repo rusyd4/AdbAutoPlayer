@@ -1,0 +1,18 @@
+{
+  "bundle": {
+    "active": true,
+    "resources": {
+      "../data/": "./data/",
+      "pyembed/python": "./"
+    },
+    "targets": [
+      "deb",
+      "appimage"
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDgyQzNCOTE1QTA5OTMzQzkKUldUSk01bWdGYm5EZ3Nrd093STRtR01iYXdxYWNabkgyNkxjMkM3NDBycHpFRkRhWnRZT1FER0kK"
+    }
+  }
+}
